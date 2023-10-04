@@ -1,0 +1,44 @@
+services:
+  mysql:
+    image: mysql:latest
+    hostname: mysql
+    command: mysqld --default-authentication-plugin=mysql_native_password --log-error-verbosity=1
+    environment:
+    - MYSQL_RANDOM_ROOT_PASSWORD=yes
+    - MYSQL_USER=tts_user
+    - MYSQL_PASSWORD=password
+    - MYSQL_DATABASE=TaskTrackingSystem
+    ports:
+    - "3306:3306"
+    healthcheck:
+      test: ["CMD", 'mysqladmin', 'ping', '-h', 'localhost', '-u', '$$MYSQL_USER', '--password=$$MYSQL_PASSWORD']
+      timeout: 10s
+      retries: 10
+  migration:
+    build:
+      context: .
+      dockerfile: ./migration/Dockerfile
+      platforms:
+      - "linux/amd64"
+    environment:
+    - DB_ENDPOINT=mysql
+    - DB_USER=tts_user
+    - DB_PASSWORD=password
+    depends_on:
+      mysql:
+        condition: service_healthy
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    environment:
+    - ASPNETCORE_ENVIRONMENT=Development
+    - ASPNETCORE_URLS=http://+:8080
+    - ConnectionString=server=mysql;port=3306;database=TaskTrackingSystem;uid=tts_user;pwd=password
+    - Key=zCp9hhE@GxjdfFPTVkke8RcM3Fx
+    - ExpiryMinutes=100
+    ports:
+    - "8080:8080"
+    depends_on:
+      migration:
+        condition: service_completed_successfully

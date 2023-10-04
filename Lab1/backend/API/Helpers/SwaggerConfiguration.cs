@@ -14,7 +14,11 @@ public static class SwaggerConfiguration
         Version = "v2",
         Title = "TaskTrackingAPI",
         Description = "Api provides work with tasks for TaskTrackingApp.",
-        Contact = new OpenApiContact()
+        Contact = new OpenApiContact
+        {
+          Name = "Cloud Labs - Byshovets N., Mulish V., Shenheliia V., Sydorov M. - IS-21mn",
+          Url = new Uri("https://github.com/mxxnr1se/Cloud-Labs")
+        }
       });
       string xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
       string xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
