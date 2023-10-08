@@ -1,0 +1,26 @@
+<div class="row pt-4">
+    <div class="col-md-8">
+        <input type="search" class="form-control form-control-lg" placeholder="Search..."  [(ngModel)]=serach><br>
+        <table class="table">
+            <thead class="thead-light"> 
+                <tr>
+                    <th class="col-sm-6" scope="col" [appSort]="service.listOfUsersAndManagers" data-order="desc" data-name="fullName">Full name</th>
+                    <th class="col-sm-5 text-center" scope="col" [appSort]="service.listOfUsersAndManagers" data-order="desc" data-name="role">Role</th>
+                    <th class="col-sm-1"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let ur of service.listOfUsersAndManagers | filter: serach">
+                    <td (click)="populateForm(ur)">{{ur.fullName}}</td>
+                    <td (click)="populateForm(ur)" class="text-center">{{ur.role}}</td>
+                    <td>
+                        <i class="far fa-trash-alt fa-lg text-danger" (click)="onDelete(ur)"></i>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="col-md-4">
+        <app-user-role></app-user-role>
+    </div>
+</div>

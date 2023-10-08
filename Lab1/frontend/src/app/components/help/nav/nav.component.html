@@ -1,0 +1,15 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark" *ngIf="this.service.role !== undefined">
+    <a class="navbar-brand">TaskTrackingApp</a>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <div class="navbar-nav" *ngIf="this.service.role === 'Admin'">
+        <a class="nav-item nav-link" [routerLink]="['/home']" [routerLinkActive]="['active']">Admin panel</a>
+      </div>
+      <div class="navbar-nav" *ngIf="this.service.role === 'Manager'">
+        <a class="nav-item nav-link" [routerLink]="['/home']" [routerLinkActive]="['active']">Projects</a>
+      </div>
+      <div class="navbar-nav" *ngIf="this.service.role === 'User'">
+        <a class="nav-item nav-link" [routerLink]="['/home']" [routerLinkActive]="['active']">Projects</a>
+      </div>
+    </div>
+    <button class="btn btn-danger my-2 my-sm-0" (click)="onLogout()">Logout</button>
+  </nav>

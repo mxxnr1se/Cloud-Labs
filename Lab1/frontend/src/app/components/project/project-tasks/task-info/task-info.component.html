@@ -1,0 +1,105 @@
+<form novalidate #form="ngForm" autocomplete="off" (submit)="onSubmit(form)" *ngIf="this.userService.role === 'Manager'">
+    <i class="fas fa-sync-alt fa-lg text-dark float-right" (click)="resetForm(form)"></i>
+    <input type="hidden" name="id" [value]="service.formData.id">
+    <div class="form-group">
+        <label>TASK NAME</label>
+        <input class="form-control form-control-lg" placeholder="Task name..." name="name" #name="ngModel"
+         [(ngModel)]="service.formData.name" required maxlength="50" minlength="1">
+    </div>
+    <div class="form-group">
+        <textarea class="form-control" rows="3" placeholder="Task description..." name="description" #description="ngModel"
+            [(ngModel)]="service.formData.description" required maxlength="500" minlength="1"
+            [class.invalid]="description.invalid && description.touched"></textarea>
+    </div>
+    <div class="form-group">
+        <label>TASK STATUS</label>
+        <select class="form-control form-control-lg" name="taskStatusSel" #taskStatusSel="ngModel" 
+        [(ngModel)]="service.formData.taskStatusId" [class.invalid]="taskStatusSel.invalid && taskStatusSel.touched">
+            <option [ngValue]="1" selected="selected">Open</option>
+            <option [ngValue]="2">InProgress</option>
+            <option [ngValue]="3">Completed</option>
+            <option [ngValue]="4">OnHold</option>
+            <option [ngValue]="5">Cancelled</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label>TASK PRIORITY</label>
+        <select class="form-control form-control-lg" name="taskPrioritySel" #taskPrioritySel="ngModel" 
+        [(ngModel)]="service.formData.taskPriorityId" [class.invalid]="taskPrioritySel.invalid && taskPrioritySel.touched">
+            <option [ngValue]="1" selected="selected">Low</option>
+            <option [ngValue]="2">Medium</option>
+            <option [ngValue]="3">High</option>
+            <option [ngValue]="4">Critical</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label>USER FOR TASK</label>
+        <select class="form-control form-control-lg" name="userForTaskSel" #userForTaskSel="ngModel" 
+        [(ngModel)]="service.formData.userId" [class.invalid]="userForTaskSel.invalid && userForTaskSel.touched">
+            <option value=null selected="selected">None</option>
+            <option [ngValue]="user.id" *ngFor="let user of service.listOfProjectUsers">{{user.fullName}}</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label>DEADLINE</label>
+        <input  type="date" class="form-control form-control-lg" name="deadline" #deadline="ngModel"
+        [(ngModel)]="service.formData.deadline" [class.invalid]="deadline.invalid && deadline.touched">
+    </div>
+    <div class="form-group">
+        <p>CREATED AT: {{service.formData.creationDate}}</p>
+        <p>LAST UPDATE AT: {{service.formData.lastUpdate}}</p>
+    </div>
+    <div class="form-group">
+        <button type="submit" class="btn btn-info btn-lg btn-block" 
+        [disabled]="form.invalid || (name.pristine && description.pristine && deadline.pristine && userForTaskSel.pristine && taskStatusSel.pristine && taskStatusSel.pristine)">SUBMIT</button>
+    </div>
+</form>
+
+<form novalidate #form="ngForm" autocomplete="off" (submit)="onSubmit(form)" *ngIf="this.userService.role === 'User'">
+    <i class="fas fa-sync-alt fa-lg text-dark float-right" (click)="resetForm(form)"></i>
+    <input type="hidden" name="id" [value]="service.formData.id">
+    <div class="form-group">
+        <label>TASK NAME</label>
+        <input class="form-control form-control-lg" disabled placeholder="Task name..." name="name" #name="ngModel"
+         [(ngModel)]="service.formData.name" required maxlength="50" minlength="1">
+    </div>
+    <div class="form-group">
+        <textarea class="form-control" rows="3" disabled placeholder="Task description..." name="description" #description="ngModel"
+            [(ngModel)]="service.formData.description" required maxlength="500" minlength="1"
+            [class.invalid]="description.invalid"></textarea>
+    </div>
+    <div class="form-group">
+        <label>TASK STATUS</label>
+        <select class="form-control form-control-lg" name="taskStatusSel" #taskStatusSel="ngModel" 
+        [(ngModel)]="service.formData.taskStatusId" [class.invalid]="taskStatusSel.invalid && taskStatusSel.touched">
+            <option [ngValue]="1" selected="selected">Open</option>
+            <option [ngValue]="2">InProgress</option>
+            <option [ngValue]="3">Completed</option>
+            <option [ngValue]="4">OnHold</option>
+            <option [ngValue]="5">Cancelled</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label>TASK PRIORITY</label>
+        <select class="form-control form-control-lg" disabled name="taskPrioritySel" #taskPrioritySel="ngModel" 
+        [(ngModel)]="service.formData.taskPriorityId" [class.invalid]="taskPrioritySel.invalid">
+            <option [ngValue]="1" selected="selected">Low</option>
+            <option [ngValue]="2">Medium</option>
+            <option [ngValue]="3">High</option>
+            <option [ngValue]="4">Critical</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label>DEADLINE</label>
+        <input  type="date" class="form-control form-control-lg" disabled name="deadline" #deadline="ngModel"
+        [(ngModel)]="service.formData.deadline" [class.invalid]="deadline.invalid">
+    </div>
+    <div class="form-group">
+        <p>CREATED AT: {{service.formData.creationDate}}</p>
+        <p>LAST UPDATE AT: {{service.formData.lastUpdate}}</p>
+    </div>
+    <div class="form-group">
+        <button type="submit" class="btn btn-info btn-lg btn-block" 
+        [disabled]="form.invalid || taskStatusSel.untouched">SUBMIT</button>
+    </div>
+</form>

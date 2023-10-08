@@ -1,0 +1,58 @@
+<div class="row pt-4"  *ngIf="this.userService.role === 'Manager'">
+    <div class="col-md-8">
+        <input type="search" class="form-control form-control-lg" placeholder="Search..."  [(ngModel)]=serach><br>
+        <table class="table">
+            <thead class="thead-light"> 
+                <tr>
+                    <th class="col-sm-9" scope="col" [appSort]="service.list" data-order="desc" data-name="name">Project name</th>
+                    <th class="col-sm-1" scope="col"></th>
+                    <th class="col-sm-1" scope="col"></th>
+                    <th class="col-sm-1" scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let pr of service.list | filter: serach">
+                    <td (click)="populateForm(pr)">{{pr.name}}</td>
+                    <td>
+                        <a [routerLink]="['/project', pr.id, 'tasks']">
+                            <i class="fas fa-list-ul fa-lg text-dark"></i>
+                        </a>
+                    </td>
+                    <td>
+                        <a [routerLink]="['/project', pr.id, 'users']">
+                            <i class="fas fa-users fa-lg text-info"></i>
+                        </a>
+                    </td>
+                    <td>
+                        <i class="far fa-trash-alt fa-lg text-danger" (click)="onDelete(pr)"></i>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="col-md-4">
+        <app-project-info></app-project-info>
+    </div>
+</div>
+
+<div class="row pt-4"  *ngIf="this.userService.role === 'User'">
+        <input type="search" class="form-control form-control-lg" placeholder="Search..."  [(ngModel)]=serach><br>
+        <table class="table mt-3">
+            <thead class="thead-light"> 
+                <tr>
+                    <th class="col-sm-11" scope="col" [appSort]="service.list" data-order="desc" data-name="name">Project name</th>
+                    <th class="col-sm-1" scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let pr of service.list | filter: serach">
+                    <td (click)="populateForm(pr)">{{pr.name}}</td>
+                    <td>
+                        <a [routerLink]="['/project', pr.id, 'tasks']">
+                            <i class="fas fa-list-ul fa-lg text-dark"></i>
+                        </a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</div>

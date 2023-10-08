@@ -271,6 +271,9 @@ FakesAssemblies/
 .ntvs_analysis.dat
 node_modules/
 
+# Angular
+**/.angular
+
 # Visual Studio 6 build log
 *.plg
 
@@ -357,7 +360,7 @@ MigrationBackup/
 FodyWeavers.xsd
 
 # VS Code files for those working on multiple tools
-.vscode/*
+**/.vscode
 !.vscode/settings.json
 !.vscode/tasks.json
 !.vscode/launch.json

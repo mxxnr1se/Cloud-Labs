@@ -1,0 +1,2 @@
+<app-admin-panel *ngIf="this.service.role === 'Admin'"></app-admin-panel>
+<app-project *ngIf="this.service.role === 'User' || this.service.role === 'Manager'"></app-project>
