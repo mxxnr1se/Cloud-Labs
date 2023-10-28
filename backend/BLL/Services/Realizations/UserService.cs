@@ -2,8 +2,8 @@
 using BLL.DTOs.User;
 using BLL.Exceptions;
 using BLL.Services.Interfaces;
-using DAL.Entities;
 using DAL.Interfaces;
+using Entities;
 using Microsoft.EntityFrameworkCore;
 using Shared.Roles;
 using InvalidDataException = BLL.Exceptions.InvalidDataException;

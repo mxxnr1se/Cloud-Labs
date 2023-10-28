@@ -1,5 +1,5 @@
 ﻿using System.Linq.Expressions;
-using DAL.Entities;
+using Entities;
 using Task = System.Threading.Tasks.Task;
 
 namespace DAL.Interfaces;

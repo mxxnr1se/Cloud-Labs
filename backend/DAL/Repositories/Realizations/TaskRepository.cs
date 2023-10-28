@@ -1,6 +1,6 @@
 ﻿using DAL.Repositories.Interfaces;
 using Microsoft.EntityFrameworkCore;
-using Task = DAL.Entities.Task;
+using Task = Entities.Task;
 
 namespace DAL.Repositories.Realizations;
 

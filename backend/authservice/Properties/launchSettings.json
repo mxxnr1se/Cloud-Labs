@@ -1,0 +1,17 @@
+﻿{
+  "profiles": {
+    "Development": {
+      "commandName": "Project",
+      "dotnetRunMessages": "true",
+      "launchBrowser": true,
+      "applicationUrl": "http://localhost:8180;https://localhost:8181",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "ASPNETCORE_DETAILEDERRORS": "1",
+        "Key": "zCp9hhE@GxjdfFPTVkke8RcM3Fx",
+        "ExpiryMinutes": "100",
+        "ConnectionString": "server=localhost;port=3306;database=TaskTrackingSystem;uid=tts_user;pwd=password"
+      }
+    }
+  }
+}

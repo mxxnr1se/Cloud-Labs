@@ -141,7 +141,7 @@ public class TaskService : ITaskService
                 throw new DbQueryResultNullException("User doesn't exist");
         }
 
-        var task = _mapper.Map<DAL.Entities.Task>(taskDto);
+        var task = _mapper.Map<Entities.Task>(taskDto);
 
         await _uow.Tasks.CreateAsync(task);
 
@@ -210,7 +210,7 @@ public class TaskService : ITaskService
                 if (task == null)
                     throw new DbQueryResultNullException("This task wasn't found");
 
-                var taskToUpdate = _mapper.Map<DAL.Entities.Task>(taskDto);
+                var taskToUpdate = _mapper.Map<Entities.Task>(taskDto);
 
                 task.Name = taskToUpdate.Name;
                 task.Description = taskToUpdate.Description;

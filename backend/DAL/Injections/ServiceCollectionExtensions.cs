@@ -1,9 +1,9 @@
-﻿using DAL.Contexts;
-using DAL.Entities;
-using DAL.Interfaces;
+﻿using DAL.Interfaces;
 using DAL.Repositories.Interfaces;
 using DAL.Repositories.Realizations;
 using DAL.UoWs;
+using DBContext.Contexts;
+using Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 

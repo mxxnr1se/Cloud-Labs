@@ -2,8 +2,8 @@
 using BLL.DTOs.Project;
 using BLL.Exceptions;
 using BLL.Services.Interfaces;
-using DAL.Entities;
 using DAL.Interfaces;
+using Entities;
 using Microsoft.EntityFrameworkCore;
 using InvalidDataException = BLL.Exceptions.InvalidDataException;
 using Task = System.Threading.Tasks.Task;

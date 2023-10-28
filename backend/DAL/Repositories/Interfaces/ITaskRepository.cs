@@ -1,5 +1,5 @@
 ﻿using DAL.Interfaces;
-using Task = DAL.Entities.Task;
+using Task = Entities.Task;
 
 namespace DAL.Repositories.Interfaces;
 

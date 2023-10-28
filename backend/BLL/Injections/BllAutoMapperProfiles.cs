@@ -2,8 +2,8 @@
 using BLL.DTOs.Project;
 using BLL.DTOs.Task;
 using BLL.DTOs.User;
-using DAL.Entities;
-using Task = DAL.Entities.Task;
+using Entities;
+using Task = Entities.Task;
 
 namespace BLL.Injections;
 

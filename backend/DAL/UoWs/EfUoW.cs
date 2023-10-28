@@ -1,6 +1,6 @@
-﻿using DAL.Entities;
-using DAL.Interfaces;
+﻿using DAL.Interfaces;
 using DAL.Repositories.Interfaces;
+using Entities;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
