@@ -11,7 +11,7 @@ import { environment } from 'src/environments/environment';
 export class TaskService {
 
   constructor(private http: HttpClient) { }
-  private readonly apiUrl = environment.apiUrl;
+  private readonly apiUrl = environment.taskserviceUrl;
 
   formData: Task = new Task();
   list: Task[];
@@ -25,7 +25,7 @@ export class TaskService {
         this.list = data.tasks
         this.percentageOfCompletion = data.percentageOfCompletion
       });
-    this.http.get(this.apiUrl + `api/users/users-of-project/${projectId}`).toPromise()
+    this.http.get(this.apiUrl + `/api/users/users-of-project/${projectId}`).toPromise()
       .then(res => this.listOfProjectUsers = res as UserOfProject[]);
   }
 

@@ -10,7 +10,7 @@ import { environment } from 'src/environments/environment';
 export class ProjectService {
 
   constructor(private http: HttpClient) { }
-  private readonly apiUrl = environment.apiUrl;
+  private readonly apiUrl = environment.projectserviceUrl;
 
   formData: Project = new Project();
   list: Project[];

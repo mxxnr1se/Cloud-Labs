@@ -39,7 +39,7 @@ export class UserService {
     }
   }
 
-  private readonly apiUrl = environment.apiUrl;
+  private readonly apiUrl = environment.authserviceUrl;
 
   register() {
     var body = {

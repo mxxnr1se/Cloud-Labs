@@ -4,7 +4,9 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'http://localhost:8080'
+  authserviceUrl: 'http://localhost:8180',
+  projectserviceUrl: 'http://localhost:8280',
+  taskserviceUrl: 'http://localhost:8380'
 };
 
 /*
