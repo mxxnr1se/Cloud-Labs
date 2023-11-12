@@ -1,0 +1,14 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: taskservice-deployment
+  labels:
+    app: taskservice
+spec:
+  selector:
+    matchLabels:
+      app: taskservice
+  template:
+    metadata:
+      labels:
+        app: taskservice

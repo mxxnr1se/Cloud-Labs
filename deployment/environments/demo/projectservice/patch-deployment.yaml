@@ -1,0 +1,14 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: projectservice-deployment
+  labels:
+    app: projectservice
+spec:
+  selector:
+    matchLabels:
+      app: projectservice
+  template:
+    metadata:
+      labels:
+        app: projectservice

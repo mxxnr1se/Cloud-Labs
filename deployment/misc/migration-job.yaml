@@ -1,0 +1,16 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: db-migration-job
+  namespace: tasktracking-app
+spec:
+  template:
+    spec:
+      containers:
+      - name: migration-container
+        image: docker.io/mxxnr1se/cloud-labs:migration
+        imagePullPolicy: Always
+        envFrom:
+        - secretRef:
+            name: migration-secret
+      restartPolicy: Never
