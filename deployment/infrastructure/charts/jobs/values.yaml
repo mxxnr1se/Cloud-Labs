@@ -1,0 +1,5 @@
+migrationJob:
+  namespace: default
+  image: mxxnr1se/cloud-labs:migration
+initKafkaJob:
+  namespace: default

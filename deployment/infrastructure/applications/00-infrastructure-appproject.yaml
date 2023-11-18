@@ -1,0 +1,17 @@
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: infrastructure
+  namespace: argocd
+  annotations:
+    argocd.argoproj.io/sync-wave: "-3"
+spec:
+  description: Project with infrastructure related applications
+  sourceRepos:
+  - '*'
+  destinations:
+  - namespace: '*'
+    server: '*'
+  clusterResourceWhitelist:
+  - group: '*'
+    kind: '*'

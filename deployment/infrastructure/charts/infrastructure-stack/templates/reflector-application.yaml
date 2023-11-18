@@ -1,0 +1,26 @@
+{{ if .Values.reflector.enabled }}
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: reflector
+  namespace: argocd
+  annotations:
+    argocd.argoproj.io/sync-wave: "-8"
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io
+spec:
+  project: infrastructure
+
+  source:
+    repoURL: https://emberstack.github.io/helm-charts
+    targetRevision: {{ .Values.reflector.version }}
+    chart: reflector
+
+  destination:
+    server: {{ .Values.spec.destination.server }}
+
+  syncPolicy:
+    automated:
+      prune: true
+      allowEmpty: true
+{{ end }}

@@ -1,0 +1,17 @@
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: tasktracking-apps
+  namespace: argocd
+  annotations:
+    argocd.argoproj.io/sync-wave: "-3"
+spec:
+  description: Project containing tasktracking services
+  sourceRepos:
+  - '*'
+  destinations:
+  - namespace: '*'
+    server: '*'
+  clusterResourceWhitelist:
+  - group: '*'
+    kind: '*'

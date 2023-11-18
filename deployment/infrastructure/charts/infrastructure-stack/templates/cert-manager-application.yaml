@@ -1,0 +1,34 @@
+{{ if .Values.certManager.enabled }}
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: cert-manager
+  namespace: argocd
+  annotations:
+    argocd.argoproj.io/sync-wave: "-3"
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io
+spec:
+  project: infrastructure
+
+  source:
+    repoURL: https://charts.jetstack.io
+    targetRevision: {{ .Values.certManager.version }}
+    chart: cert-manager
+    helm:
+      values: |
+        installCRDs: true
+        clusterResourceNamespace: kube-system
+
+  destination:
+    namespace: {{ .Values.certManager.namespace }}
+    server: {{ .Values.spec.destination.server }}
+
+  syncPolicy:
+    syncOptions:
+    - CreateNamespace=true
+    - ServerSideApply=true
+    automated:
+      prune: true
+      allowEmpty: true
+{{ end }}

@@ -1,0 +1,24 @@
+controller:
+  config:
+    compute-full-forwarded-for: "true"
+    use-forwarded-headers: "true"
+    proxy-body-size: "0"
+  allowSnippetAnnotations: true
+  ingressClass: external-nginx
+  ingressClassResource:
+    enabled: true
+    name: external-nginx
+    default: false
+  affinity:
+    podAntiAffinity:
+      requiredDuringSchedulingIgnoredDuringExecution:
+      - labelSelector:
+          matchExpressions:
+          - key: app.kubernetes.io/name
+            operator: In
+            values:
+            - ingress-nginx
+        topologyKey: "kubernetes.io/hostname"
+  replicaCount: 1
+  admissionWebhooks:
+    enabled: true

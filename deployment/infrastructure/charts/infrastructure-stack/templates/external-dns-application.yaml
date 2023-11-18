@@ -1,0 +1,43 @@
+{{ if .Values.externalDNS.enabled }}
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: external-dns
+  namespace: argocd
+  annotations:
+    argocd.argoproj.io/sync-wave: "-2"
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io
+spec:
+  project: infrastructure
+
+  source:
+    repoURL: https://charts.bitnami.com/bitnami
+    targetRevision: {{ .Values.externalDNS.version }}
+    chart: external-dns
+    helm:
+      values: |
+        domainFilters: ["{{ .Values.externalDNS.domain }}"]
+        registry: txt
+        txtOwnerId: gcp-demo
+        provider: cloudflare
+        policy: sync
+        interval: "1m"
+        sources:
+        - ingress
+        cloudflare:
+          secretName: cloudflare-api-token
+          proxied: false
+        extraArgs:
+          cloudflare-dns-records-per-page=5000:
+
+  destination:
+    namespace: kube-system
+    server: {{ .Values.spec.destination.server }}
+
+  syncPolicy:
+    automated:
+      prune: true
+      allowEmpty: true
+      selfHeal: true
+{{ end }}

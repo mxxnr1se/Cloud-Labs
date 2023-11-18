@@ -1,0 +1,53 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: tt-app-ingress
+  namespace: {{ .Values.appsNamespace }}
+spec:
+  ingressClassName: external-nginx
+  tls:
+  - hosts:
+    - cloudlabs.website
+    - '*.cloudlabs.website'
+    secretName: tls-wildcard
+  rules:
+  - host: cloudlabs.website
+    http:
+      paths:
+      - pathType: Prefix
+        backend:
+          service:
+            name: frontend-svc
+            port:
+              number: 80
+        path: /
+  - host: auth.cloudlabs.website
+    http:
+      paths:
+      - pathType: Prefix
+        backend:
+          service:
+            name: authservice-svc
+            port:
+              number: 80
+        path: /
+  - host: projects.cloudlabs.website
+    http:
+      paths:
+      - pathType: Prefix
+        backend:
+          service:
+            name: projectservice-svc
+            port:
+              number: 80
+        path: /
+  - host: tasks.cloudlabs.website
+    http:
+      paths:
+      - pathType: Prefix
+        backend:
+          service:
+            name: taskservice-svc
+            port:
+              number: 80
+        path: /

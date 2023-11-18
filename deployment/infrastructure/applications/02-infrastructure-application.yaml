@@ -1,0 +1,94 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: infrastructure-stack
+  namespace: argocd
+  annotations:
+    argocd.argoproj.io/sync-wave: "-1"
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io
+spec:
+  project: infrastructure
+
+  source:
+    repoURL: https://github.com/mxxnr1se/Cloud-Labs.git
+    targetRevision: Lab4
+    path: deployment/infrastructure/charts/infrastructure-stack
+    helm:
+      values: |
+        appsNamespace: tasktracking-app
+
+        deploymentPrefix: Demo
+
+        reflector:
+          enabled: true
+          version: 7.1.216
+
+        externalSecrets:
+          enabled: true
+          version: 0.9.8
+          namespace: external-secrets
+          gcpServiceAccount: external-secrets@cloud-labs-11.iam.gserviceaccount.com
+
+        externalSecretsConfigs:
+          enabled: true
+          repoURL: https://github.com/mxxnr1se/Cloud-Labs.git
+          version: Lab4
+          path: deployment/infrastructure/charts/external-secrets-configs
+          clusterSecretStore:
+            project: cloud-labs-11
+            region: europe-north1
+            clusterName: primary
+          externalSecret:
+            namespace: tasktracking-app
+
+        kafka:
+          enabled: true
+          repoURL: https://github.com/mxxnr1se/Cloud-Labs.git
+          version: Lab4
+          path: deployment/infrastructure/charts/kafka
+
+        externalDNS:
+          enabled: true
+          version: 6.28.0
+          domain: cloudlabs.website
+
+        ingress:
+          enabled: true
+          version: 4.8.3
+          namespace: ingress
+          valuesRepoURL: https://github.com/mxxnr1se/Cloud-Labs.git
+          valuesVersion: Lab4
+
+        certManager:
+          enabled: true
+          version: v1.13.2
+          namespace: cert-manager
+
+        ingressCertConfigs:
+          enabled: true
+          repoURL: https://github.com/mxxnr1se/Cloud-Labs.git
+          version: Lab4
+          path: deployment/infrastructure/charts/ingress-cert-configs
+
+        jobs:
+          enabled: true
+          repoURL: https://github.com/mxxnr1se/Cloud-Labs.git
+          version: Lab4
+          path: deployment/infrastructure/charts/jobs
+          migrationJob:
+            namespace: tasktracking-app
+            image: docker.io/mxxnr1se/cloud-labs:migration
+          initKafkaJob:
+            namespace: tasktracking-app
+
+  destination:
+    namespace: argocd
+    server: https://kubernetes.default.svc
+
+  syncPolicy:
+    automated:
+      prune: true
+      allowEmpty: true
+    retry:
+      limit: -1

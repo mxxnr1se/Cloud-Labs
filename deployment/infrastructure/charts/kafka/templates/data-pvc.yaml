@@ -4,10 +4,11 @@ metadata:
   labels:
     app: kafka-app
   name: kafka-data
+  namespace: {{ .Values.namespace }}
 spec:
   storageClassName: standard-rwo
   accessModes:
   - ReadWriteOnce
   resources:
     requests:
-      storage: 1Gi
+      storage: 10Gi

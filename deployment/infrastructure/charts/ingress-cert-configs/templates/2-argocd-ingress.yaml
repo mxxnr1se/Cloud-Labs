@@ -1,0 +1,22 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: argocd-ingress
+  namespace: argocd
+spec:
+  ingressClassName: external-nginx
+  tls:
+  - hosts:
+    - '*.cloudlabs.website'
+    secretName: tls-wildcard
+  rules:
+  - host: argocd.cloudlabs.website
+    http:
+      paths:
+      - pathType: Prefix
+        backend:
+          service:
+            name: argocd-server
+            port:
+              number: 443
+        path: /

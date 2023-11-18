@@ -1,0 +1,8 @@
+clusterSecretStore:
+  project: example
+  region: europe-north1
+  clusterName: primary
+
+externalSecret:
+  namespace: default
+  deploymentPrefix: development

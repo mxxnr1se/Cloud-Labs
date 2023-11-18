@@ -1,7 +1,7 @@
 apiVersion: batch/v1
 kind: Job
 metadata:
-  namespace: tasktracking-app
+  namespace: {{ .Values.initKafkaJob.namespace }}
   name: init-kafka
 spec:
   template:
@@ -12,7 +12,7 @@ spec:
         - --create
         - --if-not-exists
         - --topic
-        - task_tracking_topic
+        - task_tracking_topic_test
         - --replication-factor=1
         - --partitions=1
         - --bootstrap-server

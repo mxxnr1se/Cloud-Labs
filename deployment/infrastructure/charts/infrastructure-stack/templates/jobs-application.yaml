@@ -1,0 +1,29 @@
+{{ if .Values.jobs.enabled }}
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: jobs
+  namespace: argocd
+  annotations:
+    argocd.argoproj.io/sync-wave: "0"
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io
+spec:
+  project: infrastructure
+
+  source:
+    repoURL: {{ .Values.jobs.repoURL }}
+    targetRevision: {{ .Values.jobs.version }}
+    path: {{ .Values.jobs.path }}
+    helm:
+      values: |
+        migrationJob:
+          namespace: {{ .Values.jobs.migrationJob.namespace }}
+          image: {{ .Values.jobs.migrationJob.image }}
+        initKafkaJob:
+          namespace: {{ .Values.jobs.initKafkaJob.namespace }}
+
+  destination:
+    server: {{ .Values.spec.destination.server }}
+
+{{ end }}
