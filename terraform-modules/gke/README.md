@@ -22,9 +22,14 @@ No modules.
 
 | Name | Type |
 |------|------|
+| [google_compute_firewall.validate_nginx](https://registry.terraform.io/providers/hashicorp/google/5.2.0/docs/resources/compute_firewall) | resource |
 | [google_container_cluster.primary](https://registry.terraform.io/providers/hashicorp/google/5.2.0/docs/resources/container_cluster) | resource |
 | [google_container_node_pool.general](https://registry.terraform.io/providers/hashicorp/google/5.2.0/docs/resources/container_node_pool) | resource |
+| [google_project_iam_member.external-secrets-secretAccessor](https://registry.terraform.io/providers/hashicorp/google/5.2.0/docs/resources/project_iam_member) | resource |
+| [google_project_iam_member.external-secrets-tokenCreator](https://registry.terraform.io/providers/hashicorp/google/5.2.0/docs/resources/project_iam_member) | resource |
+| [google_service_account.external-secrets](https://registry.terraform.io/providers/hashicorp/google/5.2.0/docs/resources/service_account) | resource |
 | [google_service_account.kubernetes](https://registry.terraform.io/providers/hashicorp/google/5.2.0/docs/resources/service_account) | resource |
+| [google_service_account_iam_member.external-secrets](https://registry.terraform.io/providers/hashicorp/google/5.2.0/docs/resources/service_account_iam_member) | resource |
 
 ## Inputs
 

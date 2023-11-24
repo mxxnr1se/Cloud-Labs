@@ -9,7 +9,8 @@ locals {
   my_ip = "35.176.54.181"
 
   default_tags = {
-    "deployed_by" = "terraform"
+    "deployed_by" = "terraform",
+    "environment" = "demo"
   }
 }
 

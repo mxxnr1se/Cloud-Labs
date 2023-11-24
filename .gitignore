@@ -493,3 +493,8 @@ fabric.properties
 ### Environment ###
 **/.env
 terraform-gcp-sa-key.json
+
+### Terraform/Terragrunt ###
+**/.terragrunt-cache
+**/.terraform.lock.hcl
+**/.terraform

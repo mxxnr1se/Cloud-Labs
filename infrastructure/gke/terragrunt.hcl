@@ -1,5 +1,5 @@
 terraform {
-  source = "${include.root.locals.source_url}//modules/gcp/gke?ref=${include.root.locals.source_version}"
+  source = "${include.root.locals.source_url}//terraform-modules/gke?ref=${include.root.locals.source_version}"
 }
 
 include "root" {
