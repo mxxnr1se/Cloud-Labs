@@ -28,7 +28,7 @@ spec:
           enabled: true
           version: 0.9.8
           namespace: external-secrets
-          gcpServiceAccount: external-secrets@cloud-labs-11.iam.gserviceaccount.com
+          gcpServiceAccount: external-secrets@cloud-labs-december.iam.gserviceaccount.com
 
         externalSecretsConfigs:
           enabled: true
@@ -36,7 +36,7 @@ spec:
           version: Lab4
           path: deployment/infrastructure/charts/external-secrets-configs
           clusterSecretStore:
-            project: cloud-labs-11
+            project: cloud-labs-december
             region: europe-north1
             clusterName: primary
           externalSecret:

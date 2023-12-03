@@ -2,7 +2,7 @@ locals {
   source_url     = "git::https://github.com/mxxnr1se/Cloud-Labs.git"
   source_version = "Lab4"
 
-  project = "cloud-labs-11"
+  project = "cloud-labs-december"
   region  = "europe-north1"
   zone    = "europe-north1-a"
 
